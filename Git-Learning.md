@@ -20,3 +20,6 @@ git add . # alle dateien hinzufügen
 git commit -m "my message"
 ```
 
+```
+git status
+```
