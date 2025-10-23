@@ -12,7 +12,7 @@ git init
 
 # Fügt das entfernte GitHub-Repository als "origin" hinzu
 # Ersetze die URL durch die deines Repositories
-git remote add origin https://github.com/TheLobster007/MVG-API.git
+git remote add origin https://github.com/...
 
 # Fügt alle aktuellen Dateien zum Staging-Bereich hinzu
 git add .
@@ -31,7 +31,7 @@ Um eine Kopie des Projekts von GitHub auf einen anderen Computer herunterzuladen
 ```bash
 # Klont das Repository in einen neuen Ordner
 # Ersetze die URL durch die deines Repositories
-git clone https://github.com/TheLobster007/MVG-API.git
+git clone https://github.com/...
 ```
 
 ## 3. Lokalen Entwicklungsstand aktualisieren
@@ -41,4 +41,38 @@ Wenn sich auf GitHub Änderungen befinden, die du lokal übernehmen möchtest (z
 ```bash
 # Lädt die neuesten Änderungen vom "origin"-Repository herunter
 git pull origin master
+```
+
+## 4. Branch in main-Branch mergen
+
+Wenn du in einem separaten Branch (z.B. "Branch1") entwickelt hast und diese Änderungen nun in den main-Branch integrieren möchtest, folge diesen Schritten:
+
+```bash
+# Wechselt zum main-Branch
+git checkout main
+
+# Holt die neuesten Änderungen vom Remote-Repository (empfohlen)
+git pull origin main
+
+# Merged den Feature-Branch in den aktuellen Branch (main)
+git merge Branch1
+
+# Falls es Merge-Konflikte gibt, müssen diese manuell gelöst werden
+# Git zeigt dir die betroffenen Dateien an
+# Nach dem Lösen der Konflikte:
+git add .
+git commit -m "Merge Branch1 into main"
+
+# Lädt die gemergten Änderungen zum Remote-Repository hoch
+git push origin main
+```
+
+**Optional:** Nach erfolgreichem Merge kannst du den Feature-Branch löschen, wenn er nicht mehr benötigt wird:
+
+```bash
+# Löscht den Branch lokal
+git branch -d Branch1
+
+# Löscht den Branch auf dem Remote-Repository.
+git push origin --delete Branch1
 ```
