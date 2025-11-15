@@ -125,3 +125,21 @@ git clean -fd
 ```
 
 **Tipp:** Mit `git status` kannst du vorher überprüfen, welche Änderungen betroffen wären.
+
+
+
+
+
+
+## Um auf den Branch ClaudeCode_WEB-DEV zu wechseln und die Dateien zu laden, verwende diese Befehle in der Console:
+
+# 1. Remote Branches aktualisieren
+git fetch origin
+
+# 2. Zu dem Branch wechseln
+git checkout ClaudeCode_WEB-DEV
+
+# Falls der Branch noch nicht lokal vorhanden ist, verwende stattdessen:
+git checkout -b ClaudeCode_WEB-DEV origin/ClaudeCode_WEB-DEV
+
+Mit git status kannst du danach überprüfen, auf welchem Branch du dich befindest.
