@@ -76,3 +76,52 @@ git branch -d Branch1
 # Löscht den Branch auf dem Remote-Repository.
 git push origin --delete Branch1
 ```
+
+## 5. Lokale Dateien auf GitHub-Stand zurücksetzen
+
+Wenn du lokale Änderungen verwerfen und deinen lokalen Stand komplett mit dem aktuellen GitHub-Branch überschreiben möchtest, gibt es drei Optionen:
+
+### Option 1: Hard Reset (Destruktiv)
+**Achtung:** Alle lokalen, nicht committeten Änderungen gehen verloren!
+
+```bash
+# Lädt die neuesten Informationen vom Remote-Repository
+git fetch origin
+
+# Setzt den lokalen Stand hart auf den Remote-Branch zurück
+# Ersetze <branch-name> mit dem gewünschten Branch (z.B. main oder ein Feature-Branch)
+git reset --hard origin/<branch-name>
+```
+
+### Option 2: Stash dann Reset (Sicherer)
+Diese Variante speichert deine lokalen Änderungen in einem Stash, bevor sie verworfen werden. Du kannst sie später wiederherstellen.
+
+```bash
+# Speichert lokale Änderungen im Stash mit einer Beschreibung
+git stash push -m "Saving local changes before reset"
+
+# Lädt die neuesten Informationen vom Remote-Repository
+git fetch origin
+
+# Setzt den lokalen Stand hart auf den Remote-Branch zurück
+git reset --hard origin/<branch-name>
+
+# Optional: Später die gestashten Änderungen wiederherstellen
+# git stash pop
+```
+
+### Option 3: Hard Reset + Untracked Files löschen (Am destruktivsten)
+**Achtung:** Diese Option löscht ALLE lokalen Änderungen UND alle nicht versionierten Dateien!
+
+```bash
+# Lädt die neuesten Informationen vom Remote-Repository
+git fetch origin
+
+# Setzt den lokalen Stand hart auf den Remote-Branch zurück
+git reset --hard origin/<branch-name>
+
+# Löscht alle untracked Dateien und Verzeichnisse
+git clean -fd
+```
+
+**Tipp:** Mit `git status` kannst du vorher überprüfen, welche Änderungen betroffen wären.
